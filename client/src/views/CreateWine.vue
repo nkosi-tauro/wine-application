@@ -5,42 +5,22 @@
       <form @submit.prevent="CreateWine">
         <div class="form-group">
           <label>Title</label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="title"
-            required
-          />
+          <input type="text" class="form-control" v-model="title" required />
         </div>
 
         <div class="form-group">
           <label>Country</label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="country"
-            required
-          />
+          <input type="text" class="form-control" v-model="country" required />
         </div>
 
         <div class="form-group">
           <label>region</label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="region"
-            required
-          />
+          <input type="text" class="form-control" v-model="region" required />
         </div>
 
         <div class="form-group">
           <label>lage</label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="lage"
-            required
-          />
+          <input type="text" class="form-control" v-model="lage" required />
         </div>
 
         <div class="form-group">
@@ -65,12 +45,7 @@
 
         <div class="form-group">
           <label>Type</label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="wineType"
-            required
-          />
+          <input type="text" class="form-control" v-model="wineType" required />
         </div>
 
         <div class="form-group">
@@ -85,73 +60,44 @@
 
         <div class="form-group">
           <label>Description</label>
-          <textarea
-            type="text"
-            class="form-control"
-            v-model="desc"
-            required
-          />
+          <textarea type="text" class="form-control" v-model="desc" required />
         </div>
 
         <div class="form-group">
           <label>Alcohol Level</label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="alcLevel"
-            required
-          />
+          <input type="text" class="form-control" v-model="alcLevel" required />
         </div>
 
         <div class="form-group">
           <label>Vintage</label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="vintage"
-            required
-          />
+          <input type="text" class="form-control" v-model="vintage" required />
         </div>
 
         <div class="form-group">
-          <label>Is the EAN valid?
-          <input
-            type="checkbox"
-            class="form-control"
-            v-model="validEan"
-            required
-          />
+          <label
+            >Is the EAN valid?
+            <input
+              type="checkbox"
+              class="form-control"
+              v-model="validEan"
+              required
+            />
           </label>
         </div>
 
         <div class="form-group">
           <label>Acidity</label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="acidity"
-            required
-          />
+          <input type="text" class="form-control" v-model="acidity" required />
         </div>
 
         <div class="form-group">
           <label>Winery</label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="winery"
-            required
-          />
+          <input type="text" class="form-control" v-model="winery" required />
         </div>
 
         <div class="form-group">
           <label>Grape</label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="Grape"
-            required
-          />
+          <input type="text" class="form-control" v-model="grape" required />
         </div>
 
         <div class="form-group">
@@ -173,10 +119,14 @@
 </template>
 
 <script>
-import {reactive, toRefs} from 'vue';
+import { reactive, toRefs } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import axios from "axios";
 export default {
   name: "Create",
   setup() {
+    const route = useRoute();
+    const router = useRouter();
     const state = reactive({
       title: "",
       country: "",
@@ -194,8 +144,35 @@ export default {
       winery: "",
       grape: "",
       appellation: "",
-    })
-    return {...toRefs(state)};
+    });
+
+    const CreateWine = () => {
+      let backendUrl = "http://localhost:3000/api/create-wine";
+      axios.post(backendUrl, state).then(() => {
+        router.push('/')
+        state = {
+          title: "",
+          country: "",
+          region: "",
+          lage: "",
+          sweatness: "",
+          sugarlevel: "",
+          wineType: "",
+          wineColor: "",
+          desc: "",
+          alcLevel: "",
+          vintage: "",
+          validEan: false,
+          acidity: "",
+          winery: "",
+          grape: "",
+          appellation: "",
+        };
+      }).catch(err =>{
+        console.log(err)
+      });
+    };
+    return { ...toRefs(state), CreateWine };
   },
 };
 </script>
