@@ -42,9 +42,7 @@ router.post('/update-wine/:id', (req, res) => {
         }
         else{
             res.json(data)
-            res.send({
-                message : "Update Complete"
-            })
+            console.log("Update Complete")
         }
     })
 })
