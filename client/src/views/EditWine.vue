@@ -144,7 +144,7 @@ export default {
     })
 
     const UpdateWine = () => {
-      axios.post(`${UpdateUrl}/${route.params.id}`)
+      axios.post(`${UpdateUrl}/${route.params.id}`, state.wine)
         .then((res) => {
           router.push('/')
           // console.log(res)
