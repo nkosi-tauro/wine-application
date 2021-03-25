@@ -3,6 +3,10 @@ const Schema = mongoose.Schema
 
 
 let wineSchema = new Schema({
+    title:{
+        type: String,
+        required: true
+    },
     country:{
         type: String,
         required: true
@@ -31,10 +35,6 @@ let wineSchema = new Schema({
         type: String,
         required: true
     },
-    title:{
-        type: String,
-        required: true
-    },
     description:{
         type: String,
         required: true
@@ -48,8 +48,7 @@ let wineSchema = new Schema({
         required: true
     },
     validEAN:{
-        type: Boolean,
-        required: true
+        type: Boolean
     },
     acidity:{
         type: String,

@@ -5,22 +5,22 @@
       <form @submit.prevent="CreateWine">
         <div class="form-group">
           <label>Title</label>
-          <input type="text" class="form-control" v-model="title" required />
+          <input type="text" class="form-control" v-model="wine.title" required />
         </div>
 
         <div class="form-group">
           <label>Country</label>
-          <input type="text" class="form-control" v-model="country" required />
+          <input type="text" class="form-control" v-model="wine.country" required />
         </div>
 
         <div class="form-group">
           <label>region</label>
-          <input type="text" class="form-control" v-model="region" required />
+          <input type="text" class="form-control" v-model="wine.region" required />
         </div>
 
         <div class="form-group">
           <label>lage</label>
-          <input type="text" class="form-control" v-model="lage" required />
+          <input type="text" class="form-control" v-model="wine.lage" required />
         </div>
 
         <div class="form-group">
@@ -28,7 +28,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="sweetness"
+            v-model="wine.sweetness"
             required
           />
         </div>
@@ -38,14 +38,14 @@
           <input
             type="text"
             class="form-control"
-            v-model="sugarlevel"
+            v-model="wine.sugarlevel"
             required
           />
         </div>
 
         <div class="form-group">
           <label>Type</label>
-          <input type="text" class="form-control" v-model="wineType" required />
+          <input type="text" class="form-control" v-model="wine.wineType" required />
         </div>
 
         <div class="form-group">
@@ -53,24 +53,24 @@
           <input
             type="text"
             class="form-control"
-            v-model="wineColor"
+            v-model="wine.wineColor"
             required
           />
         </div>
 
         <div class="form-group">
           <label>Description</label>
-          <textarea type="text" class="form-control" v-model="desc" required />
+          <textarea type="text" class="form-control" v-model="wine.description" required />
         </div>
 
         <div class="form-group">
           <label>Alcohol Level</label>
-          <input type="text" class="form-control" v-model="alcLevel" required />
+          <input type="text" class="form-control" v-model="wine.alcoholLevel" required />
         </div>
 
         <div class="form-group">
           <label>Vintage</label>
-          <input type="text" class="form-control" v-model="vintage" required />
+          <input type="text" class="form-control" v-model="wine.vintage" required />
         </div>
 
         <div class="form-group">
@@ -79,25 +79,24 @@
             <input
               type="checkbox"
               class="form-control"
-              v-model="validEan"
-              required
+              v-model="wine.validEAN"
             />
           </label>
         </div>
 
         <div class="form-group">
           <label>Acidity</label>
-          <input type="text" class="form-control" v-model="acidity" required />
+          <input type="text" class="form-control" v-model="wine.acidity" required />
         </div>
 
         <div class="form-group">
           <label>Winery</label>
-          <input type="text" class="form-control" v-model="winery" required />
+          <input type="text" class="form-control" v-model="wine.winery" required />
         </div>
 
         <div class="form-group">
           <label>Grape</label>
-          <input type="text" class="form-control" v-model="grape" required />
+          <input type="text" class="form-control" v-model="wine.grape" required />
         </div>
 
         <div class="form-group">
@@ -105,7 +104,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="appellation"
+            v-model="wine.appellation"
             required
           />
         </div>
@@ -128,49 +127,53 @@ export default {
     const route = useRoute();
     const router = useRouter();
     const state = reactive({
-      title: "",
-      country: "",
-      region: "",
-      lage: "",
-      sweatness: "",
-      sugarlevel: "",
-      wineType: "",
-      wineColor: "",
-      desc: "",
-      alcLevel: "",
-      vintage: "",
-      validEan: false,
-      acidity: "",
-      winery: "",
-      grape: "",
-      appellation: "",
+      wine: {
+        title: "",
+        country: "",
+        region: "",
+        lage: "",
+        sweetness: "",
+        sugarlevel: "",
+        wineType: "",
+        wineColor: "",
+        description: "",
+        alcoholLevel: "",
+        vintage: "",
+        validEan: false,
+        acidity: "",
+        winery: "",
+        grape: "",
+        appellation: "",
+      },
     });
 
     const CreateWine = () => {
+      console.log(state.wine)
       let backendUrl = "http://localhost:3000/api/create-wine";
-      axios.post(backendUrl, state).then(() => {
-        router.push('/')
-        state = {
-          title: "",
-          country: "",
-          region: "",
-          lage: "",
-          sweatness: "",
-          sugarlevel: "",
-          wineType: "",
-          wineColor: "",
-          desc: "",
-          alcLevel: "",
-          vintage: "",
-          validEan: false,
-          acidity: "",
-          winery: "",
-          grape: "",
-          appellation: "",
-        };
-      }).catch(err =>{
-        console.log(err)
-      });
+      axios
+        .post(backendUrl, state.wine)
+        .then(() => {
+          router.push("/");
+          state.wine.title= "";
+          state.wine.country= "";
+          state.wine.region= "";
+          state.wine.lage= "";
+          state.wine.sweetness= "";
+          state.wine.sugarlevel= "";
+          state.wine.wineType= "";
+          state.wine.wineColor= "";
+          state.wine.desc= "";
+          state.wine.alcLevel= "";
+          state.wine.vintage= "";
+          state.wine.validEAN= false;
+          state.wine.acidity= "";
+          state.wine.winery= "";
+          state.wine.grape= "";
+          state.wine.appellation= "";
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
     };
     return { ...toRefs(state), CreateWine };
   },
