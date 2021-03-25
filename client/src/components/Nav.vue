@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="navbar navbar-dark bg-primary justify-content-between flex-nowrap flex-row"
+    class="navbar navbar-dark bg-dark justify-content-between flex-nowrap flex-row"
   >
     <div class="container">
       <router-link class="nav-link pr-3" to="/"><a class="navbar-brand float-left">Wine Store</a></router-link>
