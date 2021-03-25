@@ -12,7 +12,9 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }))
-app.use(cors())
+app.use(cors({
+    origin: ['http://localhost:8081', process.env.PORT]
+}))
 app.use('/api', routes)
 
 // mongoDB
