@@ -43,7 +43,7 @@ export default {
       let index = state.wines.findIndex(i => i._id === id)
 
       if(window.confirm("Proceed to Delete?")){
-        axios.delete(`${backendUrl}/${id}`)
+        axios.delete(`${backendUrl}/delete-wine/${id}`)
           .then(() => {
             state.wines.splice(index,1)
           })
