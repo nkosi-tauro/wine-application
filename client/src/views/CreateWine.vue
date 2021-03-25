@@ -110,7 +110,7 @@
         </div>
 
         <div class="form-group">
-          <button class="btn btn-danger btn-block">Create</button>
+          <button class="btn btn-success btn-block">Create</button>
         </div>
       </form>
     </div>

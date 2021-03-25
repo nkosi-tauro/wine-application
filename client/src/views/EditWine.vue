@@ -110,7 +110,7 @@
         </div>
 
         <div class="form-group">
-          <button class="btn btn-danger btn-block">Update</button>
+          <button class="btn btn-warning btn-block">Update</button>
         </div>
       </form>
     </div>
