@@ -6,10 +6,13 @@ services:
     build: ./client
     ports: 
       - "8081:8081"
-
+    environment:
+      - NODE_ENV=development
   backend: 
-    command: npm start
+    command: npm run start
     container_name: wine-backend
     build: ./backend
     ports: 
       - "3000:3000"
+    environment:
+      - NODE_ENV=development

@@ -6,10 +6,17 @@ WORKDIR /usr/app
 
 COPY package*.json ./
 
-RUN npm install
+ARG NODE_ENV=production
+ENV NODE_ENV $NODE_ENV
 
-COPY . . 
+RUN if [ "$NODE_ENV" = "development" ]; \
+	then npm install;  \
+	else npm install --only=production; \
+	fi
+
 
 EXPOSE 3000
 
 CMD [ "npm", "start" ]
+
+COPY . . 

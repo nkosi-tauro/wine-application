@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const mongoUri = `mongodb+srv://nkosi-tauro:${process.env.DB_PASS}@vuejwtauth.mpdvx.mongodb.net/wineapp?retryWrites=true&w=majority`
 const app = express()
 const routes = require('./routes/routes')
+const isDev = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || 3000
 
 app.use(express.json());
@@ -29,7 +30,14 @@ mongoose.connect(mongoUri, {
     }
 )
 
+// Setup prod build
+if (!isDev) {
+    // Static folder
+    app.use(express.static(__dirname + '/public'));
+    // SPA
+    app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'))
+}
 
 app.listen(port, () =>{
-    console.log( `Connected to port ${port} `)
+    console.log( `Connected to port ${port} on ${process.env.NODE_ENV}`)
 })
