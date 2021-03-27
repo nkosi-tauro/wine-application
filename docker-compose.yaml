@@ -1,0 +1,15 @@
+version: "3"
+services: 
+  client:
+    command: npm run serve
+    container_name: wine-client
+    build: ./client
+    ports: 
+      - "8081:8081"
+
+  backend: 
+    command: npm start
+    container_name: wine-backend
+    build: ./backend
+    ports: 
+      - "3000:3000"
