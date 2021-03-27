@@ -19,7 +19,7 @@
 
 ## :dart: About ##
 
-A CRUD Wine application
+A Dockerized CRUD Wine application
 
 
 ## :rocket: Technologies ##
@@ -29,6 +29,7 @@ The following tools were used in this project:
 - [Node.js](https://nodejs.org/en/)
 - [Vue3](https://v3.vuejs.org/)
 - [MongoDB](https://cloud.mongodb.com/)
+- [Docker](https://www.docker.com/)
 
 ## :white_check_mark: Requirements ##
 
@@ -43,8 +44,19 @@ $ git clone https://github.com/nkosi-tauro/wine-application
 # Access
 $ cd wine-application
 
+# Startup with Docker
+
 #Setup env for mongoDB
-$ add DB_PASS to .env file 
+$ add DB_PASS to .env file (backend folder)
+
+#Run Docker Compose
+$ docker-compose up --build
+
+
+#Startup without Docker
+
+#Setup env for mongoDB
+$ add DB_PASS to .env file (backend folder)
 
 # Install dependencies (backend)
 $ npm install
