@@ -131,10 +131,8 @@ export default {
       wine : { }
     })
 
-    let backendUrl = 'http://localhost:3000/api/edit-wine'
-    let UpdateUrl = 'http://localhost:3000/api/update-wine'
     onBeforeMount(() => {
-      axios.get(`${backendUrl}/${route.params.id}`)
+      axios.get(`/api/edit-wine/${route.params.id}`)
         .then((res) => {
           state.wine = res.data
         })
@@ -144,7 +142,7 @@ export default {
     })
 
     const UpdateWine = () => {
-      axios.post(`${UpdateUrl}/${route.params.id}`, state.wine)
+      axios.post(`/api/update-wine/${route.params.id}`, state.wine)
         .then((res) => {
           router.push('/')
           // console.log(res)

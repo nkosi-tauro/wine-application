@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }))
 app.use(cors({
-    origin: ['http://localhost:8081', process.env.PORT]
+    origin: ['*','http://localhost:8081', process.env.PORT]
 }))
 app.use('/api', routes)
 

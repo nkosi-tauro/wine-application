@@ -149,9 +149,8 @@ export default {
 
     const CreateWine = () => {
       console.log(state.wine)
-      let backendUrl = "http://localhost:3000/api/create-wine";
       axios
-        .post(backendUrl, state.wine)
+        .post('/api/create-wine', state.wine)
         .then(() => {
           router.push("/");
           state.wine.title= "";

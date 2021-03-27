@@ -49,11 +49,10 @@ export default {
     const state = reactive({
       wines: [],
     });
-    let backendUrl = "http://localhost:3000/api";
 
     onMounted(() => {
       axios
-        .get(backendUrl)
+        .get("/api")
         .then((response) => {
           state.wines = response.data;
         })
@@ -67,7 +66,7 @@ export default {
 
       if (window.confirm("Proceed to Delete?")) {
         axios
-          .delete(`${backendUrl}/delete-wine/${id}`)
+          .delete(`/api/delete-wine/${id}`)
           .then(() => {
             state.wines.splice(index, 1);
           })
